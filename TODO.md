@@ -15,5 +15,7 @@
 ## Process
 
   1. Create a shelf mesh
-  2. Run settling simulation on the mesh, record end particle positions
-  3. 
+  2. Run packing simulation on the mesh, record end particle positions
+  3. Set up bonds and particle densities based on bulk property experiments
+  4. Run buoyancy settling simulation (may be unnecessary)
+  5. Run primary simulation
