@@ -11,14 +11,14 @@ from runnables import ParticleAdder
 
 NUM_TIMESTEPS = 100000
 
-SPATIAL_XMIN = -6
-SPATIAL_XMAX = 6
-SPATIAL_YMIN = -6
-SPATIAL_YMAX = 6
-SPATIAL_ZMIN = -6
-SPATIAL_ZMAX = 6
+SPATIAL_XMIN = 0
+SPATIAL_XMAX = 10
+SPATIAL_YMIN = 0
+SPATIAL_YMAX = 10
+SPATIAL_ZMIN = 0
+SPATIAL_ZMAX = 10
 
-MESH_NAME = 'cube'
+MESH_NAME = 'cube10x10x10'
 MESH_DIR = 'src/meshes'
 
 MIN_RADIUS = 0.25
@@ -77,9 +77,9 @@ sim.createInteractionGroup(
             maxIterations=100))
 
 adder = ParticleAdder(sim, 1000,
-        xdomain=(-3.5, 3.5),
-        ydomain=(4, 4),
-        zdomain=(-3.5, 3.5),
+        xdomain=(SPATIAL_XMIN + MAX_RADIUS, SPATIAL_XMAX - MAX_RADIUS),
+        ydomain=(SPATIAL_YMAX, SPATIAL_YMAX),
+        zdomain=(SPATIAL_ZMIN + MAX_RADIUS, SPATIAL_ZMAX - MAX_RADIUS),
         radrange=(MIN_RADIUS, MAX_RADIUS),
         massrange=(MIN_MASS, MAX_MASS))
 sim.addPreTimeStepRunnable(adder)
