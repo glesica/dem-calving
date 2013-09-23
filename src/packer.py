@@ -31,6 +31,9 @@ MAX_RADIUS = 0.75
 MIN_MASS = MIN_RADIUS
 MAX_MASS = MAX_RADIUS
 
+GRAVITY_MAGNITUDE = 10
+VISCOSITY = 2.5
+
 sim = LsmMpi(
         numWorkerProcesses=1,
         mpiDimList=[1, 1, 1])
@@ -73,12 +76,12 @@ sim.createInteractionGroup(
 sim.createInteractionGroup(
         GravityPrms(
             name='gravity',
-            acceleration=Vec3(0.0, -50.0, 0.0)))
+            acceleration=Vec3(0.0, -GRAVITY_MAGNITUDE, 0.0)))
 
 sim.createInteractionGroup(
         LinDampingPrms(
             name='viscosity',
-            viscosity=0.1,
+            viscosity=VISCOSITY,
             maxIterations=100))
 
 adder = ParticleAdder(sim, 1000,
