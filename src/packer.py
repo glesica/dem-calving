@@ -1,15 +1,20 @@
 """
-settle.py
+packer.py
 
 Settling simulation to generate a low-energy packing.
 """
 
+import sys
 from esys.lsm import *
 from esys.lsm.util import *
 from esys.lsm.geometry import *
 from runnables import ParticleAdder
 
-NUM_TIMESTEPS = 100000
+if len(sys.argv) < 2:
+    sys.stderr.write('Error: number of timesteps ommitted\n')
+    sys.exit(1)
+
+NUM_TIMESTEPS = int(sys.argv[1])
 
 SPATIAL_XMIN = 0
 SPATIAL_XMAX = 10
@@ -86,7 +91,7 @@ sim.addPreTimeStepRunnable(adder)
 
 sim.createCheckPointer(
         CheckPointPrms(
-            fileNamePrefix='output/settle-chk',
+            fileNamePrefix='output/pack-chk',
             beginTimeStep=0,
             endTimeStep=NUM_TIMESTEPS,
             timeStepIncr=100))
