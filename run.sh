@@ -12,11 +12,11 @@ if [ -z "${1}" ]; then
     exit 1
 fi
 NUM_TIMESTEPS=${1}
-NUM_SNAPSHOTS=`expr $NUM_TIMESTEPS / 100 + 1`
+NUM_SNAPSHOTS=`expr $NUM_TIMESTEPS / 1000 + 1`
 
 # Run the packing simulation
 mpirun -np 2 `which esysparticle` src/packer.py ${NUM_TIMESTEPS}
-dump2vtk -i output/pack-chk -o output/pack-vtk_ -t 0 ${NUM_SNAPSHOTS} 100
+dump2vtk -i output/pack-chk -o output/pack-vtk_ -t 0 ${NUM_SNAPSHOTS} 1000
 
 # Clean up after ourselves
 rm src/*.pyc

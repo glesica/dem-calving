@@ -94,6 +94,6 @@ sim.createCheckPointer(
             fileNamePrefix='output/pack-chk',
             beginTimeStep=0,
             endTimeStep=NUM_TIMESTEPS,
-            timeStepIncr=100))
+            timeStepIncr=1000))
 
 sim.run()
