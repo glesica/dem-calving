@@ -49,7 +49,7 @@ function run_packer() {
     prepare_run
 
     # Run the packing simulation
-    mpirun -np 2 `which esysparticle` src/packer.py ${NUM_TIMESTEPS}
+    mpirun -np 2 `which esysparticle` src/packer.py ${NUM_TIMESTEPS} > output/energy.log
     dump2vtk -i output/pack-chk -o output/pack-vtk_ -t 0 ${NUM_SNAPSHOTS} 1000
 
     teardown_run
