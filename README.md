@@ -7,8 +7,8 @@ packing.
 
 ## Basic Instructions
 
-  1) Install ESyS-Particle (see:
+  1. Install ESyS-Particle (see:
      https://answers.launchpad.net/esys-particle/+faq/1613) - note that only the
      2.2 series will work (2.2.2 is known to work)
-  2) Run a simulation (right now only the packing simulation exists): `./run.sh
+  2. Run a simulation (right now only the packing simulation exists): `./run.sh
      packer 100000` (for 100000 timesteps)
