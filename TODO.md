@@ -12,6 +12,12 @@
       * Packing - need to let settle to de-energize bonds
       * Floating - may need to allow to come to rest before running
 
+## Packing Simulation
+
+  * Run until the mesh has been filled, then cull overflow particles in
+    post-processing
+  * Check for uniform particle size distribution in post-processing
+
 ## Process
 
   1. Create a shelf mesh
