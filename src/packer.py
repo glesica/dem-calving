@@ -8,18 +8,20 @@ import sys
 from esys.lsm import *
 from esys.lsm.util import *
 from esys.lsm.geometry import *
-from runnables import ParticleAdder
+from runnables import ParticleAdder, EnergyLogger
 
 if len(sys.argv) < 2:
     sys.stderr.write('Error: number of timesteps ommitted\n')
     sys.exit(1)
 
 NUM_TIMESTEPS = int(sys.argv[1])
+TARGET_PARTICLE_COUNT = 3000
+ADDER_INTERVAL = 100
 
 SPATIAL_XMIN = 0
 SPATIAL_XMAX = 10
 SPATIAL_YMIN = 0
-SPATIAL_YMAX = 10
+SPATIAL_YMAX = 15
 SPATIAL_ZMIN = 0
 SPATIAL_ZMAX = 10
 
@@ -84,13 +86,17 @@ sim.createInteractionGroup(
             viscosity=VISCOSITY,
             maxIterations=100))
 
-adder = ParticleAdder(sim, 1000,
+adder = ParticleAdder(sim, ADDER_INTERVAL,
         xdomain=(SPATIAL_XMIN + MAX_RADIUS, SPATIAL_XMAX - MAX_RADIUS),
         ydomain=(SPATIAL_YMAX, SPATIAL_YMAX),
         zdomain=(SPATIAL_ZMIN + MAX_RADIUS, SPATIAL_ZMAX - MAX_RADIUS),
         radrange=(MIN_RADIUS, MAX_RADIUS),
-        massrange=(MIN_MASS, MAX_MASS), raddist='normal')
+        massrange=(MIN_MASS, MAX_MASS), raddist='normal',
+        goal_particles=TARGET_PARTICLE_COUNT)
 sim.addPreTimeStepRunnable(adder)
+
+elogger = EnergyLogger(sim, 5000)
+sim.addPreTimeStepRunnable(elogger)
 
 sim.createCheckPointer(
         CheckPointPrms(
