@@ -89,7 +89,7 @@ adder = ParticleAdder(sim, 1000,
         ydomain=(SPATIAL_YMAX, SPATIAL_YMAX),
         zdomain=(SPATIAL_ZMIN + MAX_RADIUS, SPATIAL_ZMAX - MAX_RADIUS),
         radrange=(MIN_RADIUS, MAX_RADIUS),
-        massrange=(MIN_MASS, MAX_MASS))
+        massrange=(MIN_MASS, MAX_MASS), raddist='normal')
 sim.addPreTimeStepRunnable(adder)
 
 sim.createCheckPointer(
